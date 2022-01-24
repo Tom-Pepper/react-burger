@@ -1,0 +1,68 @@
+.wrapper {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+
+  composes: pt-25 from global;
+}
+
+.constructor__list {
+  padding: 0;
+  margin: 0 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inner__list {
+  max-height: 35vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.inner__list::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2F2F37;
+}
+
+.inner__list::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}
+
+.constructor__item {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.constructor__item svg {
+  margin-right: 8px;
+}
+
+.lockedItem {
+  margin: 0 16px 0 32px;
+  list-style: none;
+}
+
+.summ__wrapper {
+  display: flex;
+  align-items: center;
+
+  composes: pr-10 from global;
+}
+
+.summ__price {
+  margin-right: 10px;
+
+  composes: text text_type_main-medium from global;
+}
+
+.constructor__form {
+  display: flex;
+
+  composes: pt-10 from global;
+}

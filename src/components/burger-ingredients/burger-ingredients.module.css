@@ -6,7 +6,7 @@
 }
 
 .menu__window {
-  max-height: 912px;
+  max-height: 100vh;
   overflow: hidden;
   overflow-y: scroll;
 }

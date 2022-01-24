@@ -9,7 +9,7 @@ function BurgerIngredients(props: any) {
 
   const [current, setCurrent] = React.useState('one');
 
-  //Renders menu depending on product's category
+  //Renders menu items depending on product's category
   function renderMenu (category: string) {
     return props.props.map((item: any) => {
       if (item.type === category) {
@@ -22,7 +22,7 @@ function BurgerIngredients(props: any) {
 
   return(
     <section className={burgerIngs.wrapper}>
-      <h1 className={'text text_type_main-large pb-5'}>Соберите бургер</h1>
+      <h2 className={'text text_type_main-large pb-5'}>Соберите бургер</h2>
       <div style={{ display: 'flex' }} className={'pb-10'}>
         <Tab value="one" active={current === 'one'} onClick={setCurrent}>
           Булки
@@ -36,23 +36,23 @@ function BurgerIngredients(props: any) {
       </div>
 
       <div className={burgerIngs.menu__window}>
-        <h2 className={'text text_type_main-medium pb-6'}>
+        <h3 className={'text text_type_main-medium pb-6'}>
           Булки
-        </h2>
+        </h3>
         <ul className={menuCard.menu__list}>
           {renderMenu('bun')}
         </ul>
 
-        <h2 className={'text text_type_main-medium pb-6'}>
+        <h3 className={'text text_type_main-medium pb-6'}>
           Соусы
-        </h2>
+        </h3>
         <ul className={menuCard.menu__list}>
           {renderMenu('sauce')}
         </ul>
 
-        <h2 className={'text text_type_main-medium pb-6'}>
+        <h3 className={'text text_type_main-medium pb-6'}>
           Начинки
-        </h2>
+        </h3>
         <ul className={menuCard.menu__list}>
           {renderMenu('main')}
         </ul>
