@@ -8,9 +8,7 @@ function AppHeader() {
       `${headerStyles.header__background}`
     }>
       <div className={headerStyles.header__inner}>
-        <ul className={
-          `${headerStyles.header__list}
-          text text_type_main-default`}
+        <ul className={headerStyles.header__list}
         >
           <li className={headerStyles.list__elem}>
             <BurgerIcon type="primary" />
