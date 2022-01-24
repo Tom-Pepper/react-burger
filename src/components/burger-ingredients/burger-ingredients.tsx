@@ -14,7 +14,7 @@ function BurgerIngredients(props: any) {
     return props.props.map((item: any) => {
       if (item.type === category) {
         return (
-          <MenuCard key={item.id} props={item}/>
+          <MenuCard key={item._id} props={item}/>
         )
       }
     })
@@ -23,7 +23,7 @@ function BurgerIngredients(props: any) {
   return(
     <section className={burgerIngs.wrapper}>
       <h2 className={'text text_type_main-large pb-5'}>Соберите бургер</h2>
-      <div style={{ display: 'flex' }} className={'pb-10'}>
+      <div className={burgerIngs.tab__wrapper}>
         <Tab value="one" active={current === 'one'} onClick={setCurrent}>
           Булки
         </Tab>
@@ -62,7 +62,7 @@ function BurgerIngredients(props: any) {
 }
 
 BurgerIngredients.propTypes = {
-  props: PropTypes.any
+  props: PropTypes.array
 }
 
 export default BurgerIngredients;

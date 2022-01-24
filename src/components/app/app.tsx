@@ -18,8 +18,4 @@ function App() {
   );
 }
 
-App.propTypes = {
-  ingredients: PropTypes.any
-}
-
 export default App;

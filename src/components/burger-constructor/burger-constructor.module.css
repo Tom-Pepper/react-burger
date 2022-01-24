@@ -2,6 +2,7 @@
   max-width: 600px;
   display: flex;
   flex-direction: column;
+  align-items: end;
 
   composes: pt-25 from global;
 }
@@ -40,11 +41,13 @@
 }
 
 .constructor__item svg {
+  min-height: 24px;
+  min-width: 24px;
   margin-right: 8px;
 }
 
 .lockedItem {
-  margin: 0 16px 0 32px;
+  margin: 0 16px 0 24px;
   list-style: none;
 }
 

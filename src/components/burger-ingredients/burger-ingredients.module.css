@@ -19,3 +19,9 @@
 .menu__window::-webkit-scrollbar-thumb {
   background-color: #8585AD;
 }
+
+.tab__wrapper {
+  display: flex;
+
+  composes: pb-10 from global;
+}
