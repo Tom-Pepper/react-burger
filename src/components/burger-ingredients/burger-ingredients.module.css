@@ -1,0 +1,27 @@
+.wrapper {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 40px;
+}
+
+.menu__window {
+  max-height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.menu__window::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2F2F37;
+}
+
+.menu__window::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}
+
+.tab__wrapper {
+  display: flex;
+
+  composes: pb-10 from global;
+}

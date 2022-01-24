@@ -1,0 +1,38 @@
+.header__background {
+  margin-bottom: 40px;
+  background: #1C1C21;
+
+  composes: pt-4 pb-4 from global;
+}
+
+.header__list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+
+  composes: text text_type_main-default from global;
+}
+
+.list__elem {
+  display: flex;
+  padding: 16px 20px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.list__elem:last-child {
+  margin-right: 0;
+}
+
+.elem__text {
+  margin: 0 0 0 8px;
+}
+
+.header__inner {
+  max-width: 1240px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}

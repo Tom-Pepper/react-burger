@@ -1,0 +1,51 @@
+.menu__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 24px;
+  grid-row-gap: 32px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0 0 40px 0;
+  margin: 0 24px 0 0;
+}
+
+.list__item {
+  position: relative;
+
+  composes: pl-4 from global;
+}
+
+.quantity__tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #4C4CFF;
+  border-radius: 100px;
+
+  composes: text text_type_digits-default from global;
+}
+
+.item__price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  composes: text text_type_digits-default from global;
+}
+
+.item__title {
+  min-height: 48px;
+  text-align: center;
+  composes: text text_type_main-default from global;
+}
+
+.item__image {
+  composes: pl-4 from global;
+}

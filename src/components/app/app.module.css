@@ -1,0 +1,10 @@
+.background {
+  padding: 16px 20px;
+  background-color: #131316;
+}
+
+.menu__wrapper {
+  max-width: 1200px;
+  display: flex;
+  margin: 0 auto;
+}
