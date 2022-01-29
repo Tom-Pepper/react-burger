@@ -1,3 +1,9 @@
+/**
+ * Burger constructor component
+ * Renders two buns (top and bottom, can not be removed)
+ * and ingredients between them
+ */
+
 import React from "react";
 import burgerConstructor from './burger-constructor.module.css';
 import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
@@ -6,7 +12,7 @@ import ConstructorCard from "../constructor-card/constructor-card";
 
 function BurgerConstructor(props: any) {
 
-  //Renders constructor items from the file (temporary)
+  //Renders constructor items from the file except buns (temporary)
   function renderIngs () {
     return props.props.map((item: any) => {
       if (item.type !== 'bun') {

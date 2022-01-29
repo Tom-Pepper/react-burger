@@ -1,3 +1,7 @@
+/**
+ * Card component for the Burger Constructor
+ */
+
 import React from "react";
 import PropTypes from "prop-types";
 import burgerConstructor from "../burger-constructor/burger-constructor.module.css";

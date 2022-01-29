@@ -1,3 +1,8 @@
+/**
+ * Menu component
+ * Renders whole available burger ingredients
+ */
+
 import React from "react";
 import burgerIngs from './burger-ingredients.module.css';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
