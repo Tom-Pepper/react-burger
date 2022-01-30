@@ -11,6 +11,7 @@
 
 .list__item {
   position: relative;
+  cursor: pointer;
 
   composes: pl-4 from global;
 }

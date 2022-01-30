@@ -1,0 +1,31 @@
+.order__number {
+  text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25), 0px 0px 8px rgba(51, 51, 255, 0.25), 0px 4px 32px rgba(51, 51, 255, 0.5);
+  composes: text text_type_digits-large pb-8 from global;
+}
+
+.order__desc {
+  composes: text text_type_main-medium pb-15 from global;
+}
+
+.order__info_wrapper {
+  padding: 0 100px 120px;
+  text-align: center;
+}
+
+.order__checkmark {
+  composes: pb-15 from global;
+}
+
+.order__text {
+
+}
+
+.order__info {
+  composes: text text_type_main-default from global;
+}
+
+.order__info_subinfo {
+  color: #8585AD;
+
+  composes: pt-2 from global;
+}

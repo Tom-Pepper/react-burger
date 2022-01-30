@@ -1,0 +1,40 @@
+.modal__bg {
+  width: 100%;
+  max-width: 720px;
+
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  z-index: 2;
+
+  background-color: #1C1C21;
+  border: 1px solid rgba(76, 76, 255, 0.2);
+  box-sizing: border-box;
+  box-shadow: 0px 24px 32px rgb(0 0 0 / 4%), 0px 16px 24px rgb(0 0 0 / 4%), 0px 4px 8px rgb(0 0 0 / 4%), 0px 0px 1px rgb(0 0 0 / 4%);
+  border-radius: 40px;
+}
+
+.modal__title {
+  composes: text text_type_main-large from global;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+
+  composes: p-10 from global;
+  padding-bottom: 0;
+}
+
+.modal__button {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.1s ease-in-out 0.1s;
+}
+
+.modal__button:hover {
+  opacity: 0.8;
+}

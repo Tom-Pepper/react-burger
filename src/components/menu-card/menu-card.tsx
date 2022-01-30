@@ -7,21 +7,22 @@ import menuCard from "./menu-card.module.css";
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 
-function MenuCard(props: any) {
+// @ts-ignore
+function MenuCard({ onClick, item }) {
 
   return (
     <>
-      <li className={menuCard.list__item}>
+      <li className={menuCard.list__item} onClick={onClick}>
         <div className={menuCard.quantity__tag}>1</div>
-        <img src={props.props.image} alt={props.props.name} className={menuCard.item__image}/>
+        <img src={item.image} alt={item.name} className={menuCard.item__image}/>
         <p className={menuCard.item__price}>
           <span className={'p-1'}>
-            {props.props.price}
+            {item.price}
           </span>
           <CurrencyIcon type="primary" />
         </p>
         <h3 className={menuCard.item__title}>
-          {props.props.name}
+          {item.name}
         </h3>
       </li>
     </>

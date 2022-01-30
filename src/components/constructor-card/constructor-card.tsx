@@ -26,5 +26,4 @@ ConstructorCard.propTypes = {
   props: PropTypes.object
 }
 
-
 export default ConstructorCard;

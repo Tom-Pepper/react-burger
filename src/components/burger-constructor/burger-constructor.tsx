@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import ConstructorCard from "../constructor-card/constructor-card";
 
 // @ts-ignore
-const BurgerConstructor = ({ingredients}) => {
+const BurgerConstructor = ({ ingredients, onSubmit }) => {
 
   //Renders constructor items from the file except buns (temporary)
   function renderIngs () {
@@ -56,7 +56,7 @@ const BurgerConstructor = ({ingredients}) => {
           <CurrencyIcon type={"primary"} />
         </div>
 
-        <Button type="primary" size="medium">
+        <Button type="primary" size="medium" onClick={onSubmit}>
           Оформить заказ
         </Button>
       </form>

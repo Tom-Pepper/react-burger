@@ -4,10 +4,15 @@ import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import Loader from "../loader/loader";
+import Modal from "../modal/modal";
+import OrderDetails from "../order-details/order-details";
+import IngredientDetails from "../ingredient-details/ingredient-details";
 
 function App() {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
+  const [orderModal, setOrderModal] = useState(false);
+  const [itemModal, setItemModal] = useState(false);
 
   //Fetch menu from server
   useEffect(() => {
@@ -21,17 +26,50 @@ function App() {
     setIsLoading(false);
   }, [])
 
+  //Open order modal method
+  const openOrderModal = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    setOrderModal(true);
+  }
+
+  //Open item modal method
+  const openItemModal = (e: {
+    currentTarget: any;
+    target: any;
+    preventDefault: () => void; }) => {
+
+    e.preventDefault();
+    console.log(e.currentTarget)
+    setItemModal(true);
+  }
+
+  //Close modal method
+  const onCloseModal = () => {
+    setOrderModal(false);
+    setItemModal(false);
+  }
+
   return (
     <>
       <AppHeader />
       <main className={styles.menu__wrapper}>
         {isLoading ? <Loader /> :
-          <BurgerIngredients ingredients={data}/>
+          <BurgerIngredients ingredients={data} onItemClick={openItemModal}/>
         }
         {isLoading ? <Loader /> :
-          <BurgerConstructor ingredients={data}/>
+          <BurgerConstructor ingredients={data} onSubmit={openOrderModal}/>
         }
       </main>
+      <IngredientDetails
+        isOpen={itemModal}
+        onClose={onCloseModal}
+        title={""}
+      />
+      <OrderDetails
+        isOpen={orderModal}
+        onClose={onCloseModal}
+        title={""}
+      />
     </>
   );
 }
