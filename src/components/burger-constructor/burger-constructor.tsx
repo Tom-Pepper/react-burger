@@ -10,11 +10,12 @@ import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/
 import PropTypes from "prop-types";
 import ConstructorCard from "../constructor-card/constructor-card";
 
-function BurgerConstructor(props: any) {
+// @ts-ignore
+const BurgerConstructor = ({ingredients}) => {
 
   //Renders constructor items from the file except buns (temporary)
   function renderIngs () {
-    return props.props.map((item: any) => {
+    return ingredients.map((item: any) => {
       if (item.type !== 'bun') {
         return <ConstructorCard key={item._id} props={item}/>
       }
@@ -64,7 +65,7 @@ function BurgerConstructor(props: any) {
 }
 
 BurgerConstructor.propTypes = {
-  props: PropTypes.array
+  props: PropTypes.object
 }
 
 export default BurgerConstructor;

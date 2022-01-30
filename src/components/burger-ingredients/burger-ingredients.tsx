@@ -10,13 +10,13 @@ import MenuCard from "../menu-card/menu-card";
 import menuCard from "../menu-card/menu-card.module.css";
 import PropTypes from 'prop-types';
 
-function BurgerIngredients(props: any) {
-
+// @ts-ignore
+const BurgerIngredients = ({ingredients}) => {
   const [current, setCurrent] = React.useState('one');
 
   //Renders menu items depending on product's category
   function renderMenu (category: string) {
-    return props.props.map((item: any) => {
+    return ingredients.map((item: any) => {
       if (item.type === category) {
         return (
           <MenuCard key={item._id} props={item}/>
@@ -67,7 +67,7 @@ function BurgerIngredients(props: any) {
 }
 
 BurgerIngredients.propTypes = {
-  props: PropTypes.array
+  props: PropTypes.object
 }
 
 export default BurgerIngredients;
