@@ -2,6 +2,7 @@ import React from "react";
 import orderDetailsStyle from './order-details.module.css';
 import PropTypes from "prop-types";
 import Modal from "../modal/modal";
+import orderCheck from '../../images/order-accepted.svg';
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 
 // @ts-ignore
@@ -14,7 +15,7 @@ const OrderDetails = ({ isOpen, onClose, title }) => {
           <div className={orderDetailsStyle.order__text}>
             <p className={orderDetailsStyle.order__desc}>идентификатор заказа</p>
             <div className={orderDetailsStyle.order__checkmark}>
-              <CheckMarkIcon type="primary" />
+              <img src={orderCheck} alt="Order check image"/>
             </div>
             <p className={orderDetailsStyle.order__info}>
               Ваш заказ начали готовить

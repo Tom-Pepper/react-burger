@@ -4,7 +4,6 @@ import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import Loader from "../loader/loader";
-import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 
@@ -14,7 +13,7 @@ function App() {
   const [orderModal, setOrderModal] = useState(false);
   const [itemModal, setItemModal] = useState({
     isOpen: false,
-    item: []
+    item: null
   });
 
   //Fetch menu from server
@@ -39,12 +38,12 @@ function App() {
   const openItemModal = (e: {
     currentTarget: any;
     target: any;
-    preventDefault: () => void; }) => {
+    preventDefault: () => void; }, item: any) => {
 
     e.preventDefault();
     setItemModal({
       isOpen: true,
-      item: []
+      item: item
     });
   }
 
@@ -53,7 +52,7 @@ function App() {
     setOrderModal(false);
     setItemModal({
       isOpen: false,
-      item: []
+      item: null
     });
   }
 
@@ -71,7 +70,7 @@ function App() {
       <IngredientDetails
         isOpen={itemModal.isOpen}
         onClose={onCloseModal}
-        title={""}
+        item={itemModal.item}
       />
       <OrderDetails
         isOpen={orderModal}

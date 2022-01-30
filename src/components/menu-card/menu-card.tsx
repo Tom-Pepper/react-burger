@@ -10,9 +10,13 @@ import PropTypes from "prop-types";
 // @ts-ignore
 function MenuCard({ onClick, item }) {
 
+  const handleClick = (e: any) => {
+    onClick(e, item);
+  }
+
   return (
     <>
-      <li className={menuCard.list__item} onClick={onClick}>
+      <li className={menuCard.list__item} onClick={handleClick}>
         <div className={menuCard.quantity__tag}>1</div>
         <img src={item.image} alt={item.name} className={menuCard.item__image}/>
         <p className={menuCard.item__price}>
