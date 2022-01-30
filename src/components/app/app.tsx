@@ -12,7 +12,10 @@ function App() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [orderModal, setOrderModal] = useState(false);
-  const [itemModal, setItemModal] = useState(false);
+  const [itemModal, setItemModal] = useState({
+    isOpen: false,
+    item: []
+  });
 
   //Fetch menu from server
   useEffect(() => {
@@ -40,13 +43,19 @@ function App() {
 
     e.preventDefault();
     console.log(e.currentTarget)
-    setItemModal(true);
+    setItemModal({
+      isOpen: true,
+      item: []
+    });
   }
 
   //Close modal method
   const onCloseModal = () => {
     setOrderModal(false);
-    setItemModal(false);
+    setItemModal({
+      isOpen: false,
+      item: []
+    });
   }
 
   return (
@@ -61,7 +70,7 @@ function App() {
         }
       </main>
       <IngredientDetails
-        isOpen={itemModal}
+        isOpen={itemModal.isOpen}
         onClose={onCloseModal}
         title={""}
       />
