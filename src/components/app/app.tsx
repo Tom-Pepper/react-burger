@@ -42,7 +42,6 @@ function App() {
     preventDefault: () => void; }) => {
 
     e.preventDefault();
-    console.log(e.currentTarget)
     setItemModal({
       isOpen: true,
       item: []
