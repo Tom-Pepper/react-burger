@@ -1,10 +1,7 @@
 import React from "react";
 import orderDetailsStyle from './order-details.module.css';
-import PropTypes from "prop-types";
-import Modal from "../modal/modal";
 import orderCheck from '../../images/order-accepted.svg';
 
-// @ts-ignore
 const OrderDetails = () => {
   return (
     <>
@@ -13,7 +10,7 @@ const OrderDetails = () => {
         <div className={orderDetailsStyle.order__text}>
           <p className={orderDetailsStyle.order__desc}>идентификатор заказа</p>
           <div className={orderDetailsStyle.order__checkmark}>
-            <img src={orderCheck} alt="Order check image"/>
+            <img src={orderCheck} alt="Order check"/>
           </div>
           <p className={orderDetailsStyle.order__info}>
             Ваш заказ начали готовить

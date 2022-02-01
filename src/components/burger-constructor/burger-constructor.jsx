@@ -6,10 +6,9 @@
 
 import React from "react";
 import burgerConstructor from './burger-constructor.module.css';
-import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ConstructorCard from "../constructor-card/constructor-card";
 
-// @ts-ignore
 const BurgerConstructor = ({ ingredients, onSubmit }) => {
 
   //Renders constructor items from the file except buns (temporary)

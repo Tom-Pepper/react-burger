@@ -1,8 +1,6 @@
 import React from "react";
 import ingDetailsStyle from './ingredient-details.module.css';
-import Modal from "../modal/modal";
 
-// @ts-ignore
 const IngredientDetails = ({ item }) => {
   return(
     <>

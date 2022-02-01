@@ -5,9 +5,9 @@ import React from "react";
 import menuCard from "./menu-card.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-function MenuCard({ onClick, item }) {
+const MenuCard = ({ onClick, item }) => {
 
-  const handleClick = (e) => {
+  function handleClick(e) {
     onClick(e, item);
   }
 

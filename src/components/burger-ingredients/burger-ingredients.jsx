@@ -8,7 +8,6 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import MenuCard from "../menu-card/menu-card";
 import menuCard from "../menu-card/menu-card.module.css";
 
-// @ts-ignore
 const BurgerIngredients = ({ ingredients, onItemClick }) => {
   const [current, setCurrent] = React.useState('one');
 

@@ -1,19 +1,33 @@
-import React from "react";
+import React, {useEffect} from "react";
 import modalStyles from './modal.module.css';
 import ReactDOM from "react-dom";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 
-// @ts-ignore
 const Modal = ({ isOpen, onClose, title, ...props }) => {
   const modalContainer = document.querySelector('#modals');
 
-  // @ts-ignore
+  useEffect(() => {
+    //Close modal on Esc button
+    const onEscClick = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      onEscClick(e);
+    });
+    return document.removeEventListener('keydown', (e) => {
+      onEscClick(e);
+    })
+  }, [onClose])
+
   return ReactDOM.createPortal(
     <>
       {isOpen &&
         (<>
-          <div className={modalStyles.modal__bg}>
+          <div className={modalStyles.modal__bg} >
             <div className={modalStyles.modal__header}>
               <h3 className={modalStyles.modal__title}>{title}</h3>
               <button className={modalStyles.modal__button} onClick={onClose}>
@@ -26,7 +40,6 @@ const Modal = ({ isOpen, onClose, title, ...props }) => {
         </>)
       }
     </>,
-    // @ts-ignore
     modalContainer
   );
 }
