@@ -3,11 +3,10 @@ import ingDetailsStyle from './ingredient-details.module.css';
 import Modal from "../modal/modal";
 
 // @ts-ignore
-const IngredientDetails = ({ isOpen, onClose, item }) => {
+const IngredientDetails = ({ item }) => {
   return(
     <>
       {item &&
-        <Modal isOpen={isOpen} onClose={onClose} title={"Детали ингридиента"}>
         <div className={ingDetailsStyle.info_wrapper}>
           <img src={item.image_large} alt={item.name}/>
           <h4 className={ingDetailsStyle.details__item_name}>
@@ -40,7 +39,6 @@ const IngredientDetails = ({ isOpen, onClose, item }) => {
             </li>
           </ul>
         </div>
-      </Modal>
       }
     </>
   );

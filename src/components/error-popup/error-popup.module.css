@@ -1,0 +1,8 @@
+
+.info_wrapper {
+  padding: 100px;
+  text-align: center;
+  color: brown;
+
+  composes: text text_type_main-medium from global;
+}

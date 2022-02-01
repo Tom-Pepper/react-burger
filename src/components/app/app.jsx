@@ -7,6 +7,8 @@ import Loader from "../loader/loader";
 import OrderDetails from "../order-details/order-details";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import { API_URL } from '../../utils/constants';
+import Modal from "../modal/modal";
+import ErrorPopup from "../error-popup/error-popup";
 
 function App() {
   const [data, setData] = useState([]);
@@ -16,6 +18,11 @@ function App() {
     isOpen: false,
     item: null
   });
+  const [errorModal, setErrorModal] = useState({
+    isOpen: false,
+    title: 'Произошла ошибка',
+    text: ''
+  })
 
   //Fetch menu from server
   useEffect(() => {
@@ -30,7 +37,11 @@ function App() {
         }
       })
       .then(data => setData(data.data))
-      .catch(err => console.log(`Smth went wrong while API fetched: ${err}`))
+      .catch(err => setErrorModal({
+        ...errorModal,
+        isOpen: true,
+        text: `Что-то не то с загрузкой меню с сервера. Попробуйте зайти позже. Ошибка ${err}. ${err.text}`
+      }))
       .finally(() => setIsLoading(false));
 
   }, [])
@@ -71,16 +82,22 @@ function App() {
           <BurgerConstructor ingredients={data} onSubmit={openOrderModal}/>
         }
       </main>
-      <IngredientDetails
-        isOpen={itemModal.isOpen}
-        onClose={onCloseModal}
-        item={itemModal.item}
-      />
-      <OrderDetails
-        isOpen={orderModal}
-        onClose={onCloseModal}
-        title={""}
-      />
+      <Modal isOpen={itemModal.isOpen}
+             onClose={onCloseModal}
+             title={"Детали ингридиента"}
+      >
+        <IngredientDetails
+          item={itemModal.item}
+        />
+      </Modal>
+
+      <Modal isOpen={orderModal} onClose={onCloseModal} title={""}>
+        <OrderDetails />
+      </Modal>
+
+      <Modal isOpen={errorModal.isOpen} onClose={onCloseModal} title={errorModal.title}>
+        <ErrorPopup text={errorModal.text} />
+      </Modal>
     </>
   );
 }
