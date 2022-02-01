@@ -3,7 +3,6 @@ import orderDetailsStyle from './order-details.module.css';
 import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import orderCheck from '../../images/order-accepted.svg';
-import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 
 // @ts-ignore
 const OrderDetails = ({ isOpen, onClose, title }) => {
@@ -29,10 +28,6 @@ const OrderDetails = ({ isOpen, onClose, title }) => {
       </Modal>
     </>
   );
-}
-
-OrderDetails.propTypes = {
-  props: PropTypes.object
 }
 
 export default OrderDetails;

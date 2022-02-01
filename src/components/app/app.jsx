@@ -6,6 +6,7 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 import Loader from "../loader/loader";
 import OrderDetails from "../order-details/order-details";
 import IngredientDetails from "../ingredient-details/ingredient-details";
+import { API_URL } from '../../utils/constants';
 
 function App() {
   const [data, setData] = useState([]);
@@ -20,25 +21,28 @@ function App() {
   useEffect(() => {
     setIsLoading(true);
 
-    fetch('https://norma.nomoreparties.space/api/ingredients')
-      .then(res => res.json())
+    fetch(`${API_URL}/ingredients`)
+      .then(res => {
+        if(res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(res.status);
+        }
+      })
       .then(data => setData(data.data))
-      .catch(err => console.log(`Smth went wrong while API fetched: ${err}`));
+      .catch(err => console.log(`Smth went wrong while API fetched: ${err}`))
+      .finally(() => setIsLoading(false));
 
-    setIsLoading(false);
   }, [])
 
   //Open order modal method
-  const openOrderModal = (e: { preventDefault: () => void; }) => {
+  const openOrderModal = (e) => {
     e.preventDefault();
     setOrderModal(true);
   }
 
   //Open item modal method
-  const openItemModal = (e: {
-    currentTarget: any;
-    target: any;
-    preventDefault: () => void; }, item: any) => {
+  const openItemModal = (e, item) => {
 
     e.preventDefault();
     setItemModal({

@@ -1,7 +1,5 @@
 import React, {useEffect} from "react";
 import overlayStyles from './modal-overlay.module.css';
-import PropTypes from "prop-types";
-import Modal from "../modal/modal";
 
 // @ts-ignore
 function ModalOverlay({ onClick }) {
@@ -24,10 +22,5 @@ function ModalOverlay({ onClick }) {
     <div className={overlayStyles.modal__overlay} onClick={onClick}/>
   );
 }
-
-ModalOverlay.propTypes = {
-  props: PropTypes.object
-}
-
 
 export default ModalOverlay;

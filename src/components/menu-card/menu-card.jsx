@@ -5,12 +5,11 @@
 import React from "react";
 import menuCard from "./menu-card.module.css";
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 
 // @ts-ignore
 function MenuCard({ onClick, item }) {
 
-  const handleClick = (e: any) => {
+  const handleClick = (e) => {
     onClick(e, item);
   }
 
@@ -31,10 +30,6 @@ function MenuCard({ onClick, item }) {
       </li>
     </>
   )
-}
-
-MenuCard.propTypes = {
-  props: PropTypes.object
 }
 
 export default MenuCard;

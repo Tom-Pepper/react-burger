@@ -7,7 +7,6 @@
 import React from "react";
 import burgerConstructor from './burger-constructor.module.css';
 import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import ConstructorCard from "../constructor-card/constructor-card";
 
 // @ts-ignore
@@ -15,7 +14,7 @@ const BurgerConstructor = ({ ingredients, onSubmit }) => {
 
   //Renders constructor items from the file except buns (temporary)
   function renderIngs () {
-    return ingredients.map((item: any) => {
+    return ingredients.map((item) => {
       if (item.type !== 'bun') {
         return <ConstructorCard key={item._id} props={item}/>
       }
@@ -62,10 +61,6 @@ const BurgerConstructor = ({ ingredients, onSubmit }) => {
       </form>
     </section>
   )
-}
-
-BurgerConstructor.propTypes = {
-  props: PropTypes.object
 }
 
 export default BurgerConstructor;

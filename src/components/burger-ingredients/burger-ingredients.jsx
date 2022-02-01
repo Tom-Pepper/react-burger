@@ -2,22 +2,19 @@
  * Menu component
  * Renders whole available burger ingredients
  */
-
 import React from "react";
 import burgerIngs from './burger-ingredients.module.css';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import MenuCard from "../menu-card/menu-card";
 import menuCard from "../menu-card/menu-card.module.css";
-import PropTypes from 'prop-types';
-import IngredientDetails from "../ingredient-details/ingredient-details";
 
 // @ts-ignore
 const BurgerIngredients = ({ ingredients, onItemClick }) => {
   const [current, setCurrent] = React.useState('one');
 
   //Renders menu items depending on product's category
-  function renderMenu (category: string) {
-    return ingredients.map((item: any) => {
+  function renderMenu (category) {
+    return ingredients.map((item) => {
       if (item.type === category) {
         return (
           <MenuCard key={item._id} item={item} onClick={onItemClick} />
@@ -65,10 +62,6 @@ const BurgerIngredients = ({ ingredients, onItemClick }) => {
       </div>
     </section>
   );
-}
-
-BurgerIngredients.propTypes = {
-  props: PropTypes.object
 }
 
 export default BurgerIngredients;

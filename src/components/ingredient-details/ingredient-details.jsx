@@ -1,7 +1,6 @@
 import React from "react";
 import ingDetailsStyle from './ingredient-details.module.css';
 import Modal from "../modal/modal";
-import PropTypes from "prop-types";
 
 // @ts-ignore
 const IngredientDetails = ({ isOpen, onClose, item }) => {
