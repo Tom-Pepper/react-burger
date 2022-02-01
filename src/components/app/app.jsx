@@ -65,6 +65,11 @@ function App() {
   //Close modal method
   const onCloseModal = () => {
     setOrderModal(false);
+    setErrorModal({
+      ...errorModal,
+      isOpen: false,
+      text: ''
+    });
     setItemModal({
       isOpen: false,
       item: null
