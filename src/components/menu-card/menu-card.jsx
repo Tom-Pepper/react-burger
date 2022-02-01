@@ -1,12 +1,10 @@
 /**
  * Card component for the Menu list
  */
-
 import React from "react";
 import menuCard from "./menu-card.module.css";
-import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-// @ts-ignore
 function MenuCard({ onClick, item }) {
 
   const handleClick = (e) => {

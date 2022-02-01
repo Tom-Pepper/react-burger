@@ -60,7 +60,7 @@
 .summ__price {
   margin-right: 10px;
 
-  composes: text text_type_main-medium from global;
+  composes: text text_type_digits-medium from global;
 }
 
 .constructor__form {
