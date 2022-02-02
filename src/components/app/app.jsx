@@ -62,7 +62,7 @@ function App() {
     });
   }
 
-  //Close modal method
+  //Close all modals method
   const onCloseModal = () => {
     setOrderModal(false);
     setErrorModal({

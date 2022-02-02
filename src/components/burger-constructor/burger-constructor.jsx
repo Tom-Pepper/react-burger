@@ -15,7 +15,7 @@ const BurgerConstructor = ({ ingredients, onSubmit }) => {
   function renderIngs () {
     return ingredients.map((item) => {
       if (item.type !== 'bun') {
-        return <ConstructorCard key={item._id} props={item}/>
+        return <ConstructorCard key={item._id} item={item}/>
       }
     })
   }
