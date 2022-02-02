@@ -37,11 +37,11 @@ function App() {
         }
       })
       .then(data => setData(data.data))
-      .catch(err => setErrorModal({
-        ...errorModal,
+      .catch(err => setErrorModal((prevState) => ({
+        ...prevState,
         isOpen: true,
         text: `Что-то не то с загрузкой меню с сервера. Попробуйте зайти позже. Ошибка ${err}. ${err.text}`
-      }))
+      })))
       .finally(() => setIsLoading(false));
 
   }, [])
@@ -65,11 +65,11 @@ function App() {
   //Close all modals method
   const onCloseModal = () => {
     setOrderModal(false);
-    setErrorModal({
-      ...errorModal,
+    setErrorModal((prevState) => ({
+      ...prevState,
       isOpen: false,
       text: ''
-    });
+    }));
     setItemModal({
       isOpen: false,
       item: null
@@ -87,22 +87,29 @@ function App() {
           <BurgerConstructor ingredients={data} onSubmit={openOrderModal}/>
         }
       </main>
-      <Modal isOpen={itemModal.isOpen}
-             onClose={onCloseModal}
-             title={"Детали ингридиента"}
-      >
-        <IngredientDetails
-          item={itemModal.item}
-        />
-      </Modal>
 
-      <Modal isOpen={orderModal} onClose={onCloseModal} title={""}>
-        <OrderDetails />
-      </Modal>
+      {itemModal.isOpen &&
+        <Modal
+          onClose={onCloseModal}
+          title={"Детали ингридиента"}
+        >
+          <IngredientDetails
+            item={itemModal.item}
+          />
+        </Modal>
+      }
 
-      <Modal isOpen={errorModal.isOpen} onClose={onCloseModal} title={errorModal.title}>
-        <ErrorPopup text={errorModal.text} />
-      </Modal>
+      {orderModal &&
+        <Modal onClose={onCloseModal} title={""}>
+          <OrderDetails />
+        </Modal>
+      }
+
+      {errorModal.isOpen &&
+        <Modal isOpen={errorModal.isOpen} onClose={onCloseModal} title={errorModal.title}>
+          <ErrorPopup text={errorModal.text} />
+        </Modal>
+      }
     </>
   );
 }
