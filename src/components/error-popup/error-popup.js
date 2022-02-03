@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import errModalStyles from './error-popup.module.css';
 
 const ErrorPopup = ({ text }) => {
@@ -7,6 +8,10 @@ const ErrorPopup = ({ text }) => {
       {text}
     </div>
   );
+}
+
+ErrorPopup.propTypes = {
+  text: PropTypes.string.isRequired
 }
 
 export default ErrorPopup;

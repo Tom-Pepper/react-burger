@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import ingDetailsStyle from './ingredient-details.module.css';
 
 const IngredientDetails = ({ item }) => {
@@ -40,6 +41,17 @@ const IngredientDetails = ({ item }) => {
       }
     </>
   );
+}
+
+IngredientDetails.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    proteins: PropTypes.number.isRequired,
+    fat: PropTypes.number.isRequired,
+    carbohydrates: PropTypes.number.isRequired,
+    calories: PropTypes.number.isRequired,
+    image_large: PropTypes.string.isRequired,
+  }).isRequired
 }
 
 export default IngredientDetails;
