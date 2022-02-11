@@ -3,19 +3,19 @@
  */
 
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import burgerConstructor from "../burger-constructor/burger-constructor.module.css";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 
-function ConstructorCard(props: any) {
+function ConstructorCard({ name, price, image }) {
   return(
     <>
       <li className={burgerConstructor.constructor__item}>
         <DragIcon type="primary" />
         <ConstructorElement
-          text={props.props.name}
-          price={props.props.price}
-          thumbnail={props.props.image}
+          text={name}
+          price={price}
+          thumbnail={image}
         />
       </li>
     </>
@@ -23,8 +23,9 @@ function ConstructorCard(props: any) {
 }
 
 ConstructorCard.propTypes = {
-  props: PropTypes.object
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
 }
-
 
 export default ConstructorCard;

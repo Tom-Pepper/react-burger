@@ -2,24 +2,22 @@
  * Menu component
  * Renders whole available burger ingredients
  */
-
 import React from "react";
+import PropTypes from 'prop-types';
 import burgerIngs from './burger-ingredients.module.css';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import MenuCard from "../menu-card/menu-card";
 import menuCard from "../menu-card/menu-card.module.css";
-import PropTypes from 'prop-types';
 
-function BurgerIngredients(props: any) {
-
+const BurgerIngredients = ({ ingredients, onItemClick }) => {
   const [current, setCurrent] = React.useState('one');
 
   //Renders menu items depending on product's category
-  function renderMenu (category: string) {
-    return props.props.map((item: any) => {
+  function renderMenu (category) {
+    return ingredients.map((item) => {
       if (item.type === category) {
         return (
-          <MenuCard key={item._id} props={item}/>
+          <MenuCard key={item._id} item={item} onClick={onItemClick} />
         )
       }
     })
@@ -67,7 +65,21 @@ function BurgerIngredients(props: any) {
 }
 
 BurgerIngredients.propTypes = {
-  props: PropTypes.array
+  ingredients: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    proteins: PropTypes.number.isRequired,
+    fat: PropTypes.number.isRequired,
+    carbohydrates: PropTypes.number.isRequired,
+    calories: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    image_mobile: PropTypes.string.isRequired,
+    image_large: PropTypes.string.isRequired,
+    __v: PropTypes.number,
+  })).isRequired,
+  onItemClick: PropTypes.func.isRequired
 }
 
 export default BurgerIngredients;

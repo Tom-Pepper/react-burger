@@ -5,18 +5,18 @@
  */
 
 import React from "react";
+import PropTypes from 'prop-types';
 import burgerConstructor from './burger-constructor.module.css';
-import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
+import {Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ConstructorCard from "../constructor-card/constructor-card";
 
-function BurgerConstructor(props: any) {
+const BurgerConstructor = ({ ingredients, onSubmit }) => {
 
   //Renders constructor items from the file except buns (temporary)
   function renderIngs () {
-    return props.props.map((item: any) => {
+    return ingredients.map((item) => {
       if (item.type !== 'bun') {
-        return <ConstructorCard key={item._id} props={item}/>
+        return <ConstructorCard key={item._id} name={item.name} price={item.price} image={item.image}/>
       }
     })
   }
@@ -55,7 +55,7 @@ function BurgerConstructor(props: any) {
           <CurrencyIcon type={"primary"} />
         </div>
 
-        <Button type="primary" size="medium">
+        <Button type="primary" size="medium" onClick={onSubmit}>
           Оформить заказ
         </Button>
       </form>
@@ -64,7 +64,21 @@ function BurgerConstructor(props: any) {
 }
 
 BurgerConstructor.propTypes = {
-  props: PropTypes.array
+  ingredients: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    proteins: PropTypes.number.isRequired,
+    fat: PropTypes.number.isRequired,
+    carbohydrates: PropTypes.number.isRequired,
+    calories: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    image_mobile: PropTypes.string.isRequired,
+    image_large: PropTypes.string.isRequired,
+    __v: PropTypes.number,
+  })).isRequired,
+  onSubmit: PropTypes.func.isRequired,
 }
 
 export default BurgerConstructor;
