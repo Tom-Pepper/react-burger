@@ -2,11 +2,11 @@ import React from "react";
 import orderDetailsStyle from './order-details.module.css';
 import orderCheck from '../../images/order-accepted.svg';
 
-const OrderDetails = () => {
+const OrderDetails = ({ orderNumber }) => {
   return (
     <>
       <div className={orderDetailsStyle.order__info_wrapper}>
-        <h3 className={orderDetailsStyle.order__number}>012345</h3>
+        <h3 className={orderDetailsStyle.order__number}>{orderNumber}</h3>
         <div className={orderDetailsStyle.order__text}>
           <p className={orderDetailsStyle.order__desc}>идентификатор заказа</p>
           <div className={orderDetailsStyle.order__checkmark}>

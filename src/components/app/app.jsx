@@ -6,14 +6,19 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 import Loader from "../loader/loader";
 import OrderDetails from "../order-details/order-details";
 import IngredientDetails from "../ingredient-details/ingredient-details";
-import { API_URL } from '../../utils/constants';
+import api from "../../utils/api";
 import Modal from "../modal/modal";
 import ErrorPopup from "../error-popup/error-popup";
+
+import {MenuContext} from "../../utils/menuContext";
 
 function App() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [orderModal, setOrderModal] = useState(false);
+  const [orderModal, setOrderModal] = useState({
+    isOpen: false,
+    orderNumber: null
+  });
   const [itemModal, setItemModal] = useState({
     isOpen: false,
     item: null
@@ -28,14 +33,7 @@ function App() {
   useEffect(() => {
     setIsLoading(true);
 
-    fetch(`${API_URL}/ingredients`)
-      .then(res => {
-        if(res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.status);
-        }
-      })
+    api.getMenu()
       .then(data => setData(data.data))
       .catch(err => setErrorModal((prevState) => ({
         ...prevState,
@@ -47,9 +45,18 @@ function App() {
   }, [])
 
   //Open order modal method
-  const openOrderModal = (e) => {
+  const openOrderModal = (e, order) => {
     e.preventDefault();
-    setOrderModal(true);
+    api.putOrder(order)
+      .then((res) => setOrderModal({
+        isOpen: true,
+        orderNumber: res.order.number
+      }))
+      .catch(err => setErrorModal((prevState) => ({
+        ...prevState,
+        isOpen: true,
+        text: `Ошибка передачи заказа. Попробуйте позже. Ошибка ${err}. ${err.text}`
+      })))
   }
 
   //Open item modal method
@@ -64,7 +71,10 @@ function App() {
 
   //Close all modals method
   const onCloseModal = () => {
-    setOrderModal(false);
+    setOrderModal((prevState) => ({
+      ...prevState,
+      isOpen: false
+    }));
     setErrorModal((prevState) => ({
       ...prevState,
       isOpen: false,
@@ -84,7 +94,9 @@ function App() {
           <BurgerIngredients ingredients={data} onItemClick={openItemModal}/>
         }
         {isLoading ? <Loader /> :
-          <BurgerConstructor ingredients={data} onSubmit={openOrderModal}/>
+          <MenuContext.Provider value={data}>
+            <BurgerConstructor onSubmit={openOrderModal}/>
+          </MenuContext.Provider>
         }
       </main>
 
@@ -99,9 +111,9 @@ function App() {
         </Modal>
       }
 
-      {orderModal &&
+      {orderModal.isOpen &&
         <Modal onClose={onCloseModal} title={""}>
-          <OrderDetails />
+          <OrderDetails orderNumber={orderModal.orderNumber}/>
         </Modal>
       }
 
