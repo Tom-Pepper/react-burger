@@ -10,7 +10,7 @@ import api from "../../utils/api";
 import Modal from "../modal/modal";
 import ErrorPopup from "../error-popup/error-popup";
 
-import {MenuContext} from "../../utils/menuContext";
+import {MenuContext} from "../../services/menuContext";
 
 function App() {
   const [data, setData] = useState([]);

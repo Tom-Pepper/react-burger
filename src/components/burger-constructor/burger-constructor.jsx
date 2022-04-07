@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import burgerConstructor from './burger-constructor.module.css';
 import {Button, ConstructorElement, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ConstructorCard from "../constructor-card/constructor-card";
-import {MenuContext} from "../../utils/menuContext";
+import {MenuContext} from "../../services/menuContext";
 
 const BurgerConstructor = ({ onSubmit }) => {
   const ingredients = useContext(MenuContext);
@@ -27,7 +27,6 @@ const BurgerConstructor = ({ onSubmit }) => {
 
   //Renders buns on top and to the bottom
   function renderBun (position, positionName) {
-    orderIDs.push(bun._id);
     return <ConstructorElement
       key={bun._id}
       type={position}
@@ -41,23 +40,27 @@ const BurgerConstructor = ({ onSubmit }) => {
   //Renders constructor items from the file except buns (temporary)
   function renderIngs () {
     return withoutBuns.map((item) => {
-      orderIDs.push(item._id);
       return <ConstructorCard key={item._id} name={item.name} price={item.price} image={item.image}/>
     })
   }
 
   //Total sum
-  function calculateBurger() {
+  const calculateBurger = React.useMemo(() => {
     const bunsTotal = bun.price * 2;
-
     const ingsTotal = withoutBuns.reduce(function (sum, current) {
       return sum + current.price;
     }, 0);
-
     return bunsTotal + ingsTotal;
-  }
+  }, [ingredients])
 
   function handlePlaceOrder (e) {
+    orderIDs.push(bun._id);
+    orderIDs.push(bun._id);
+
+    for (let item of withoutBuns) {
+      orderIDs.push(item._id);
+    }
+
     onSubmit(e, orderIDs);
   }
 
@@ -78,7 +81,7 @@ const BurgerConstructor = ({ onSubmit }) => {
       <form className={burgerConstructor.constructor__form}>
         <div className={burgerConstructor.summ__wrapper}>
           <p className={burgerConstructor.summ__price}>
-            {calculateBurger()}
+            {calculateBurger}
           </p>
           <CurrencyIcon type={"primary"} />
         </div>

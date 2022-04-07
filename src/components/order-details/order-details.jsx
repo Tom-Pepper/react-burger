@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import orderDetailsStyle from './order-details.module.css';
 import orderCheck from '../../images/order-accepted.svg';
 
@@ -23,6 +24,10 @@ const OrderDetails = ({ orderNumber }) => {
       </div>
     </>
   );
+}
+
+OrderDetails.propTypes = {
+  orderNumber: PropTypes.number.isRequired
 }
 
 export default OrderDetails;
