@@ -51,7 +51,7 @@ const BurgerConstructor = ({ onSubmit }) => {
       return sum + current.price;
     }, 0);
     return bunsTotal + ingsTotal;
-  }, [ingredients])
+  }, [bun, withoutBuns])
 
   function handlePlaceOrder (e) {
     orderIDs.push(bun._id);
