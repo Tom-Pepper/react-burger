@@ -6,15 +6,15 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 import Loader from "../loader/loader";
 import OrderDetails from "../order-details/order-details";
 import IngredientDetails from "../ingredient-details/ingredient-details";
-import api from "../../utils/api";
 import Modal from "../modal/modal";
 import ErrorPopup from "../error-popup/error-popup";
 
+import api from "../../utils/api";
+import { useSelector, useDispatch } from 'react-redux';
+import { getMenu } from "../../services/actions/ingredients";
 import {MenuContext} from "../../services/menuContext";
 
 function App() {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [orderModal, setOrderModal] = useState({
     isOpen: false,
     orderNumber: null
@@ -28,21 +28,22 @@ function App() {
     title: 'Произошла ошибка',
     text: ''
   })
+  const dispatch = useDispatch();
+  const { menu, menuRequest } = useSelector(state => state.ingredients);
 
-  //Fetch menu from server
+  //Get menu from server
   useEffect(() => {
-    setIsLoading(true);
-
-    api.getMenu()
-      .then(data => setData(data.data))
-      .catch(err => setErrorModal((prevState) => ({
-        ...prevState,
-        isOpen: true,
-        text: `Что-то не то с загрузкой меню с сервера. Попробуйте зайти позже. Ошибка ${err}. ${err.text}`
-      })))
-      .finally(() => setIsLoading(false));
-
+    dispatch(getMenu())
   }, [])
+
+  //Render loader when menu is loading
+  const menuContent = () => {
+    return menuRequest ? (
+      <Loader />
+    ) : (
+      <BurgerIngredients ingredients={menu} onItemClick={openItemModal}/>
+    )
+  };
 
   //Open order modal method
   const openOrderModal = (e, order) => {
@@ -61,7 +62,6 @@ function App() {
 
   //Open item modal method
   const openItemModal = (e, item) => {
-
     e.preventDefault();
     setItemModal({
       isOpen: true,
@@ -90,14 +90,12 @@ function App() {
     <>
       <AppHeader />
       <main className={styles.menu__wrapper}>
-        {isLoading ? <Loader /> :
-          <BurgerIngredients ingredients={data} onItemClick={openItemModal}/>
-        }
-        {isLoading ? <Loader /> :
-          <MenuContext.Provider value={data}>
-            <BurgerConstructor onSubmit={openOrderModal}/>
-          </MenuContext.Provider>
-        }
+
+        {menuContent()}
+
+        <MenuContext.Provider value={menu}>
+          <BurgerConstructor onSubmit={openOrderModal}/>
+        </MenuContext.Provider>
       </main>
 
       {itemModal.isOpen &&
